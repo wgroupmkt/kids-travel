@@ -17,12 +17,12 @@ export async function generarImagen(numero: string) {
   ctx.drawImage(image, 0, 0);
 
   // 🔥 usar la fuente registrada
-  ctx.font = "bold 70px Inter";
+  ctx.font = "bold 50px Inter";
   ctx.fillStyle = "#ffffff";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
 
-  ctx.fillText(numero, image.width / 2, image.height * 0.67);
+  ctx.fillText(numero, image.width / 2, image.height * 0.63);
 
   return canvas.toBuffer("image/jpeg");
 }
