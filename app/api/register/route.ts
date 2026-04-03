@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "../../../lib/firebaseAdmin";
 import { Resend } from "resend";
+import { generarImagen } from "@/lib/generarImagen";
 
 // ✅ Validar API KEY antes de usarla
 const resendApiKey = process.env.RESEND_API_KEY;
@@ -10,6 +11,7 @@ if (!resendApiKey) {
 }
 
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
+
 
 export async function POST(req: Request) {
   try {
@@ -56,23 +58,35 @@ export async function POST(req: Request) {
       totalParticipants: currentTotal + 1,
     });
 
+    // 🔥 GENERÁS LA IMAGEN (ACÁ VA)
+    const bufferImagen = await generarImagen(raffleNumber.toString());
+
     // 📩 ENVIAR EMAIL (solo si hay email y API key)
     if (email && resend) {
       try {
         await resend.emails.send({
-          from: "Registro <info@bono.wolftravel.com.ar>",
-          to: email,
-          subject: "Tu número de sorteo 🎟",
-          html: `
-            <div style="font-family: Arial; padding:20px;">
-              <h2>¡Registro exitoso!</h2>
-              <p>Hola ${name},</p>
-              <p>Tu número de sorteo es:</p>
-              <h1 style="color:#2563eb;">${raffleNumber}</h1>
-              <p>¡Mucha suerte! 🍀</p>
-            </div>
-          `,
-        });
+  from: "Registro <info@bono.wolftravel.com.ar>",
+  to: email,
+  subject: "Tu número de sorteo 🎟",
+  html: `
+    <div style="font-family: Arial; padding:20px;">
+      <h2>¡Registro exitoso!</h2>
+      <p>Hola ${name},</p>
+      <p>Tu número de sorteo es:</p>
+      <h1 style="color:#2563eb;">${raffleNumber}</h1>
+      <img src="cid:sorteo" style="max-width:100%;" />
+      <p>¡Descarga el número de sorteo!</p>
+      <p>¡Mucha suerte!🍀</p>
+    </div>
+  `,
+  attachments: [
+    {
+      filename: "sorteo.png",
+      content: bufferImagen,
+      cid:"sorteo", // 🔥 IMPORTANTE (tiene que coincidir con el img)
+    } as any,
+  ],
+});
       } catch (error) {
         console.error("❌ Error enviando email:", error);
       }
