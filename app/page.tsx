@@ -101,7 +101,7 @@ export default function Registro() {
         <div className="flex flex-col gap-1 pl-5 pr-5">
 
 
-          <h2 className="`${montserrat.className} font-medium text-[#312783] ml-4 text-xl">PASAJERO</h2>
+          <h2 className="`${montserrat.className} font-medium  text-[#312783] ml-4 mb-0 text-xl">PROMOTORES</h2>
 
           <input
             name="sellerId"
@@ -109,7 +109,7 @@ export default function Registro() {
             onChange={handleChange}
             placeholder="D.N.I - Pasajero"
             required
-            className="font-light border-2 border-gray-200 p-3 rounded-[200px] focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]"
+            className="`${montserrat.className} font-light border-2 border-[#d8df6d] p-3 rounded-[200px] focus:ring-2 focus:ring-sky-400 outline-none text-[#1e40af]"
           />
         </div>
 
@@ -123,7 +123,7 @@ export default function Registro() {
             onChange={handleChange}
             placeholder="Nombre"
             required
-            className="`${montserrat.className} font-light border-2 rounded-[200px] border-gray-200 p-3 focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]/90"
+            className="`${montserrat.className} font-light border-2 rounded-[200px] border-[#d8df6d] p-3 focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]"
           />
 
           <input
@@ -132,7 +132,7 @@ export default function Registro() {
             onChange={handleChange}
             placeholder="D.N.I - Participante"
             required
-            className="`${montserrat.className} font-light border-2 rounded-[200px] border-gray-200 p-3 focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]/90"
+            className="`${montserrat.className} font-light border-2 rounded-[200px] border-[#d8df6d] p-3 focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]"
           />
 
           <input
@@ -141,7 +141,7 @@ export default function Registro() {
             onChange={handleChange}
             placeholder="Edad"
             required
-            className="`${montserrat.className} font-light border-2 rounded-[200px] border-gray-200 p-3 focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]/90"
+            className="`${montserrat.className} font-light border-2 rounded-[200px] border-[#d8df6d] p-3 focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]"
           />
 
           <input
@@ -150,7 +150,7 @@ export default function Registro() {
             onChange={handleChange}
             placeholder="Email"
             type="email"
-            className="`${montserrat.className} font-light border-2 rounded-[200px] border-gray-200 p-3 focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]/90"
+            className="`${montserrat.className} font-light border-2 rounded-[200px] border-[#d8df6d] p-3 focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]/90"
           />
 
           <input
@@ -158,7 +158,7 @@ export default function Registro() {
             value={form.phone}
             onChange={handleChange}
             placeholder="Teléfono"
-            className="`${montserrat.className} font-light border-2 rounded-[200px] border-gray-200 p-3 focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]/90"
+            className="`${montserrat.className} font-light border-2 rounded-[200px] border-[#d8df6d] p-3 focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]"
           />
         </div>
 
@@ -184,7 +184,6 @@ export default function Registro() {
            alt="Registrar"
            width={420}
            height={50}
-           className="object-contain group-hover:opacity-0 transition duration-300"
          />
 
          {/* Imagen hover */}
