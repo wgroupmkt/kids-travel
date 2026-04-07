@@ -14,7 +14,7 @@ export default function Registro() {
     sellerId: "",
     name: "",
     dni: "",
-    edad: "",
+    fechaNacimiento: "",
     email: "",
     phone: "",
   });
@@ -47,7 +47,7 @@ export default function Registro() {
           sellerId: "",
           name: "",
           dni: "",
-          edad: "",
+          fechaNacimiento: "",
           email: "",
           phone: "",
         });
@@ -86,15 +86,24 @@ export default function Registro() {
              </div>
 
 
-           <div className="flex justify-center relative top-6">
+           <div className="flex flex-col justify-start relative top-7 mt-5 ml-6 mb-5">
+        
         <Image
              src="/img/registro.png"
              alt="Registro de Participante"
-             width={620}
+             width={250}
              height={120}
              className="object-contain"
            />
-         </div>
+       
+          <Image
+             src="/img/participante.png"
+             alt="Registro de Participante"
+             width={150}
+             height={120}
+             className="object-contain"
+           />
+           </div>
 
 
         {/* 🔵 PASAJERO */}
@@ -136,13 +145,13 @@ export default function Registro() {
           />
 
           <input
-            name="edad"
-            value={form.edad}
+            type="date"
+            name="fechaNacimiento"
+            value={form.fechaNacimiento}
             onChange={handleChange}
-            placeholder="Edad"
             required
-            className="`${montserrat.className} font-light border-2 rounded-[200px] border-[#d8df6d] p-3 focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]"
-          />
+            className={`${montserrat.className} font-light border-2 rounded-[200px] border-[#d8df6d] p-3 focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]`}
+           />
 
           <input
             name="email"
@@ -182,17 +191,9 @@ export default function Registro() {
          <Image
            src="/img/registrar.png"
            alt="Registrar"
-           width={420}
+           width={200}
            height={50}
-         />
-
-         {/* Imagen hover */}
-         <Image
-           src="/img/registrarhover.png"
-           alt="Registrar hover"
-           width={420}
-           height={50}
-           className="object-contain absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition duration-300"
+           className="object-contain transition duration-300 ease-in-out hover:scale-105 hover:opacity-80"
          />
 
        </button>
