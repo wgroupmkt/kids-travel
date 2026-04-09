@@ -8,7 +8,7 @@ registerFont(
 );
 
 export async function generarImagen(numero: string) {
-  const imagePath = path.join(process.cwd(), "public/img/sorteo.jpeg");
+  const imagePath = path.join(process.cwd(), "public/img/sorteo.jpg");
   const image = await loadImage(imagePath);
 
   const canvas = createCanvas(image.width, image.height);
@@ -17,12 +17,13 @@ export async function generarImagen(numero: string) {
   ctx.drawImage(image, 0, 0);
 
   // 🔥 usar la fuente registrada
-  ctx.font = "bold 50px Inter";
+  ctx.font = "bold 30px Inter";
   ctx.fillStyle = "#ffffff";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
 
-  ctx.fillText(numero, image.width / 2, image.height * 0.655);
+  ctx.textAlign = "left"; // importante
+  ctx.fillText(numero, image.width * 0.78, image.height * 0.765);
 
   return canvas.toBuffer("image/jpeg");
 }
