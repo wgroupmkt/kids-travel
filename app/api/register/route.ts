@@ -121,7 +121,7 @@ export async function POST(req: Request) {
           html: `
             <div style="font-family: Arial; padding:20px;">
               <h2>¡Registro exitoso!</h2>
-              <p>Hola ${name}, gracias por ayudarme con mi viaje de egresados Kids</p>
+              <p>Hola ${name}, gracias por ayudarme con mi viaje de egresados 💙🐺</p>
               <p>Tu número de sorteo es:</p>
               <h1 style="color:#2563eb;">${raffleNumber}</h1>
               <img src="cid:sorteo" style="max-width:100%;" />
