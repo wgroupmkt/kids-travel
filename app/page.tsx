@@ -63,8 +63,21 @@ export default function Registro() {
     setLoading(false);
   }
 
+  
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const { name, value } = e.target;
+
+  let cleanValue = value;
+
+  // 👉 solo para los campos DNI
+  if (name === "dni" || name === "sellerId") {
+    cleanValue = value.replace(/\D/g, ""); // elimina todo lo que no sea número
+  }
+
+  setForm({
+    ...form,
+    [name]: cleanValue,
+   });
   }
 
   return (
@@ -114,14 +127,28 @@ export default function Registro() {
 
           <h2 className="`${montserrat.className} font-medium  text-[#312783] ml-4 mb-0 text-xl">PROMOTORES</h2>
 
-          <input
-            name="sellerId"
-            value={form.sellerId}
-            onChange={handleChange}
-            placeholder="D.N.I - Pasajero"
-            required
-            className="`${montserrat.className} border-2 border-[#d8df6d] p-3 rounded-[200px] focus:ring-2 focus:ring-sky-400 outline-none text-[#1e40af] focus:text-[#312783]"
-          />
+             <input
+              name="sellerId"
+              value={form.sellerId}
+              onChange={handleChange}
+              onKeyDown={(e) => {
+                if (e.key === "." || e.key === "," || e.key === "e" || e.key === "-") {
+                  e.preventDefault();
+                }
+              }}
+              onPaste={(e) => {
+                const paste = e.clipboardData.getData("text");
+                if (!/^\d+$/.test(paste)) {
+                  e.preventDefault();
+                }
+              }}
+              placeholder="DNI del pasajero"
+              required
+              maxLength={8}
+              inputMode="numeric"
+              pattern="[0-9]*"
+               className="`${montserrat.className} font-light border-2 rounded-[200px] border-[#d8df6d] p-3 focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]"
+            />
         </div>
 
         {/* 🟢 PARTICIPANTE */}
@@ -137,13 +164,27 @@ export default function Registro() {
             className="`${montserrat.className} font-light border-2 rounded-[200px] border-[#d8df6d] p-3 focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]"
           />
 
-          <input
-            name="dni"
-            value={form.dni}
-            onChange={handleChange}
-            placeholder="D.N.I - Participante"
-            required
-            className="`${montserrat.className} font-light border-2 rounded-[200px] border-[#d8df6d] p-3 focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]"
+            <input
+             name="dni"
+             value={form.dni}
+             onChange={handleChange}
+             onKeyDown={(e) => {
+               if (e.key === "." || e.key === "," || e.key === "e" || e.key === "-") {
+                 e.preventDefault();
+               }
+             }}
+             onPaste={(e) => {
+               const paste = e.clipboardData.getData("text");
+               if (!/^\d+$/.test(paste)) {
+                 e.preventDefault();
+               }
+            }}
+             placeholder="DNI del participante (sin puntos)"
+             required
+             maxLength={8}
+             inputMode="numeric"
+             pattern="[0-9]*"
+             className="`${montserrat.className} font-light border-2 rounded-[200px] border-[#d8df6d] p-3 focus:ring-2 focus:ring-sky-400 outline-none text-[#312783]"
           />
 
           <input
