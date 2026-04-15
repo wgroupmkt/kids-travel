@@ -44,7 +44,16 @@ export default function Admin() {
         >
 
       {/* 🎥 VIDEO FONDO */}
-     <image ></image>
+       
+       <Image 
+            src="/img/fondo.jpeg" 
+            alt="fondo"
+            width={1920}
+            height={1080}
+            className="absolute"
+          />
+
+   
 
       {/* 🌫️ OVERLAY */}
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
@@ -57,7 +66,7 @@ export default function Admin() {
           <Image
             src="/img/logo.png"
             alt="Logo"
-            width={100}
+            width={150}
             height={40}
           />
         </div>
