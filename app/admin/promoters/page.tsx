@@ -48,9 +48,9 @@ export default function Admin() {
        <Image 
             src="/img/fondo.jpeg" 
             alt="fondo"
-            width={1920}
-            height={1080}
-            className="absolute"
+            width={100}
+            height={100}
+            className="absolute object-cover"
           />
 
    
