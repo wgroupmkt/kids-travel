@@ -125,7 +125,7 @@ export default function Registro() {
         <div className="flex flex-col gap-1 pl-5 pr-5">
 
 
-          <h2 className="`${montserrat.className} font-medium  text-[#312783] ml-4 mb-0 text-xl">PROMOTORES</h2>
+          <h2 className="`${montserrat.className} font-medium  text-[#312783] ml-4 mb-0 text-xl">PASAJEROS</h2>
 
              <input
               name="sellerId"
