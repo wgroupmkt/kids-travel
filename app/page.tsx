@@ -45,7 +45,6 @@ export default function Registro() {
        };
      }
 
-
     try {
       const res = await fetch("/api/register", {
         method: "POST",
