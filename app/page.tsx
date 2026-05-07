@@ -1,8 +1,9 @@
 "use client";
-
+import Script from "next/script";
 import { useState } from "react";
 import Image from "next/image";
 import { Montserrat } from "next/font/google";
+
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -19,7 +20,8 @@ export default function Registro() {
   phone: "",
   fechaNacimiento: ""
 })
-
+  
+  const [turnstileToken, setTurnstileToken] = useState("");
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -30,12 +32,29 @@ export default function Registro() {
     setErrorMessage("");
     setSuccessMessage("");
 
+    if (!turnstileToken) {
+    setErrorMessage("Verificá que no sos un robot");
+    setLoading(false);
+    return;
+    }
+
+    
+   if (typeof window !== "undefined") {
+        (window as any).onTurnstileSuccess = (token: string) => {
+        setTurnstileToken(token);
+       };
+     }
+
+
     try {
       const res = await fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+        body: JSON.stringify({
+             ...form,
+        turnstileToken,
+         }),
+        });
 
       const data = await res.json();
 
@@ -227,20 +246,35 @@ export default function Registro() {
           </div>
         )}
 
-        {/* BOTÓN */}
-      <button className="relative flex justify-center cursor-pointer group">
-
-         {/* Imagen normal */}
-         <Image
-           src="/img/registrar.png"
-           alt="Registrar"
-           width={200}
-           height={50}
-           className="object-contain transition duration-300 ease-in-out hover:scale-105 hover:opacity-80"
+        <div className="flex justify-center mt-2">
+        <div
+         className="cf-turnstile"
+         data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+         data-callback="onTurnstileSuccess"
          />
+        </div>
 
-       </button>
+
+        {/* BOTÓN */}
+      <button
+          type="submit"
+          className="relative flex justify-center cursor-pointer group"
+         >
+        <Image
+         src="/img/registrar.png"
+         alt="Registrar"
+         width={200}
+         height={50}
+          className="object-contain transition duration-300 ease-in-out hover:scale-105 hover:opacity-80"
+       />
+      </button>
       </form>
+
+      <Script
+           src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+           async
+           defer
+      />
     </div>
   );
 }
